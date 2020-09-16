@@ -7,28 +7,26 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-/*** 
- * `quotes` array 
-***/
 
+//Quotes Array.
 const quotes = [
 
-  {quote:
-    "The world isn’t perfect. But it’s there for us, doing the best it can….that’s what makes it so damn beautiful.",
+  {
+    quote:"The world isn’t perfect. But it’s there for us, doing the best it can….that’s what makes it so damn beautiful.",
     source:'Roy Mustang',
     citation:'Full Metal Alchemist BrotherHood',
     year:2010
   },
   
-  {quote:
-    "Don’t give up, there’s no shame in falling down! The true shame is to not stand up again!",
+  {
+    quote:"Don’t give up, there’s no shame in falling down! The true shame is to not stand up again!",
     source:'Shintaro Midorima',
     citation:'Kuroko No Basket',
     year:2017
   },
 
-  {quote:
-    "Every journey begins with a single step. We just have to have patience",
+  {
+    quote:"Every journey begins with a single step. We just have to have patience",
     source:'Milly Thompson',
   },
 
@@ -62,20 +60,37 @@ const quotes = [
   },
 ]
 
-console.log(quotes)
+//getRandomQuote Function.
+function getRandomQuote(quotesArr){
 
+  //Code below picks a random number.
+  let choice = Math.floor( Math.random() * quotesArr.length );
 
+  //And uses it as my quotesArr's[index]
+  return quotesArr[choice];
+}
 
-/***
- * `getRandomQuote` function
-***/
+//printQuoteFunction.
+function printQuote(){
 
+  //Call To the getRandomQuote Function to get my randomQuote.
+  let quote = getRandomQuote(quotes);
 
+  let html = `
+  <p class="quote"> ${quote.quote}</p>
+  <p class="source"> ${quote.source}`
 
-/***
- * `printQuote` function
-***/
+  if ( quote.citation ){
+    html+=`<span class = "citation">${quote.citation}</span>`
+  }
 
+  if ( quote.year){
+    html+=`<span class = "year">${quote.year}</span>`
+  }
+  html+=`</p>`;
+  
+  return document.getElementById('quote-box').innerHTML = html ;
+};
 
 
 /***
