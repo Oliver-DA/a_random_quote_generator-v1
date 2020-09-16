@@ -19,14 +19,14 @@ const quotes = [
   },
   
   {
-    quote:"Don’t give up, there’s no shame in falling down! The true shame is to not stand up again!",
+    quote:"Don’t give up, there’s no shame in falling down! The true shame is to not stand up again!.",
     source:'Shintaro Midorima',
     citation:'Kuroko No Basket',
     year:2017
   },
 
   {
-    quote:"Every journey begins with a single step. We just have to have patience",
+    quote:"Every journey begins with a single step. We just have to have patience.",
     source:'Milly Thompson',
   },
 
@@ -58,7 +58,28 @@ const quotes = [
     source:'Alfred Lord Tennyson',
     citation:'Ulysses',
   },
+
+  {
+    quote:"It's all right to cry. It's all right to run away. Just don't ever give up!.",
+    source:'Jigoro Kuwajima',
+    citation:'Demon Slayer',
+    year:2016
+  },
+
+  {
+    quote:"It's all right to cry. It's all right to run away. Just don't ever give up!",
+    source:'Jigoro Kuwajima',
+    citation:'Demon Slayer',
+    year:2016
+  },
+
+  {
+    quote:"The worst enemy to creativity is self-doubt.",
+    source:'Sylvia Plath',
+    citation:'The Unabridged Journals of Sylvia Plath',
+  },
 ]
+
 
 //getRandomQuote Function.
 function getRandomQuote(quotesArr){
@@ -73,7 +94,14 @@ function getRandomQuote(quotesArr){
 //printQuoteFunction.
 function printQuote(){
 
+  //Get a random rgb color.
+  let rgbColor = getRgbColor(getRandomNumber);
+
+  //Insert color in the DOM.
+  document.querySelector("body").style.background = rgbColor;
+
   //Call To the getRandomQuote Function to get my randomQuote.
+  
   let quote = getRandomQuote(quotes);
 
   let html = `
@@ -84,13 +112,24 @@ function printQuote(){
     html+=`<span class = "citation">${quote.citation}</span>`
   }
 
-  if ( quote.year){
+  if ( quote.year ){
     html+=`<span class = "year">${quote.year}</span>`
   }
+
   html+=`</p>`;
   
-  return document.getElementById('quote-box').innerHTML = html ;
+  return document.getElementById('quote-box').innerHTML = html;
 };
+
+//getRandomNumber Function.
+function getRandomNumber(){
+  return Math.floor( Math.random() * 256 )
+}
+
+//getRandomRGBColor.
+function getRgbColor(value){
+  return `rgb(${value()},${value()},${value()})`
+}
 
 
 /***
