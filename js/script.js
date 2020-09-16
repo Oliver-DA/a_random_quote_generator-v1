@@ -27,16 +27,17 @@ const quotes = [
 
   {
     quote:"Every journey begins with a single step. We just have to have patience.",
-    source:'Milly Thompson',
+    source:'Milly Thompson'
   },
 
   {
     quote:"If you only face forward, there is something you will miss seeing.",
-    source:'Vash the Stampede',
+    source:'Vash the Stampede'
   },
 
   {
     quote:"If you don’t like the hand that fate’s dealt you with, fight for a new one.",
+    tags:["motivation,life,success"],
     source:'Naruto Uzumaki',
     citation:'Naruto Shippuden',
     year:2015
@@ -44,24 +45,26 @@ const quotes = [
 
   {
     quote:"Be who you are and say what you feel, because those who mind don’t matter, and those who matter don’t mind.",
-    source:'Bernard M. Baruch',
+    tags:["inspiration","poetry"],
+    source:'Bernard M. Baruch'
   },
 
   {
     quote:"All we have to decide is what to do with the time that is given us.",
     source:'J.R.R.Tolkein',
-    citation:'The Fellowship of the Ring',
+    citation:'The Fellowship of the Ring'
   },
 
   {
     quote:"Made weak by time and fate, but strong in will To strive, to seek, to find, and not to yield.",
     source:'Alfred Lord Tennyson',
-    citation:'Ulysses',
+    citation:'Ulysses'
   },
 
   {
     quote:"It's all right to cry. It's all right to run away. Just don't ever give up!.",
     source:'Jigoro Kuwajima',
+    tags:["love","inspire"],
     citation:'Demon Slayer',
     year:2016
   },
@@ -75,11 +78,21 @@ const quotes = [
 
   {
     quote:"The worst enemy to creativity is self-doubt.",
+    tags:["lifequotes","truth"],
     source:'Sylvia Plath',
-    citation:'The Unabridged Journals of Sylvia Plath',
+    citation:'The Unabridged Journals of Sylvia Plath'
   },
 ]
 
+//getRandomNumber Function.
+function getRandomNumber(){
+  return Math.floor( Math.random() * 256 )
+}
+
+//getRandomRGBColor.
+function getRgbColor(value){
+  return `rgb(${value()},${value()},${value()})`
+}
 
 //getRandomQuote Function.
 function getRandomQuote(quotesArr){
@@ -101,36 +114,35 @@ function printQuote(){
   document.querySelector("body").style.background = rgbColor;
 
   //Call To the getRandomQuote Function to get my randomQuote.
-  
   let quote = getRandomQuote(quotes);
 
+  //Building the html.
   let html = `
   <p class="quote"> ${quote.quote}</p>
   <p class="source"> ${quote.source}`
 
   if ( quote.citation ){
-    html+=`<span class = "citation">${quote.citation}</span>`
+    html+=`<span class = "citation">${quote.citation}</span> `
   }
 
   if ( quote.year ){
-    html+=`<span class = "year">${quote.year}</span>`
+    html+=`<span class = "year">${quote.year}</span> `
+  }
+
+  if( quote.tags ){
+    html+=`<span class = "tags"> Tags: #${quote.tags.join(" #")}</span>`
   }
 
   html+=`</p>`;
   
   return document.getElementById('quote-box').innerHTML = html;
+
 };
 
-//getRandomNumber Function.
-function getRandomNumber(){
-  return Math.floor( Math.random() * 256 )
-}
-
-//getRandomRGBColor.
-function getRgbColor(value){
-  return `rgb(${value()},${value()},${value()})`
-}
-
+//setInterval Function every 10 seconds
+setInterval(() => {
+  printQuote()
+},10000)
 
 /***
  * click event listener for the print quote button
