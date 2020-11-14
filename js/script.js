@@ -139,9 +139,6 @@ function printQuote(){
 
 };
 
-//setInterval Function every 10 seconds
-setInterval(printQuote(),10000);
-
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
